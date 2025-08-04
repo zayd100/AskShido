@@ -60,7 +60,7 @@ const Register = ({ onRegister, onSwitchToLogin }) => {
             Create your account
           </h2>
           <p className="login-subtitle">
-            Join the Questionnaire App
+            Register for AskShido!
           </p>
         </div>
         

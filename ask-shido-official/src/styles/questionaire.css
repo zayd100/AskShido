@@ -23,18 +23,34 @@
   100% { background-position: 0% 50%; }
 }
 
-/* Loading and Error States */
+/* Loading and Error States - Inline within form */
 .loading-message,
 .error-message {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 100vh;
+  background: #fee2e2;
+  border: 1px solid #fecaca;
+  border-left: 4px solid #dc2626;
+  color: #991b1b;
+  padding: 12px 16px;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 500;
+  margin: 12px 0;
   text-align: center;
-  color: white;
-  font-size: 1.5rem;
-  font-weight: 600;
+  animation: fadeIn 0.3s ease-out;
 }
+
+.loading-message {
+  background: #dbeafe;
+  border-color: #bfdbfe;
+  border-left-color: #3b82f6;
+  color: #1e40af;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
 
 /* Completion Screen */
 .completion-screen {

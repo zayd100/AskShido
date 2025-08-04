@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import Login from './components/Login';
-import Register from './components/Register';
-import Questionnaire from './components/Questionaire';
-import Dashboard from './components/Dashboard';
+import Login from './components/login';
+import Register from './components/register';
+import Questionnaire from './components/questionaire';
+import Dashboard from './components/dashboard';
 import { useQuestionnaire } from './hooks/useQuestionnaire';
 
-// Mock questions for the MVP
+// Your existing QUESTIONS array...
 const QUESTIONS = [
-  "Do you enjoy working in teams?",
+ "Do you enjoy working in teams?",
   "Are you comfortable with public speaking?",
   "Do you prefer working with data over people?",
   "Are you motivated by financial rewards?",
@@ -72,7 +72,7 @@ function App() {
     loading: questionnaireLoading,
   } = useQuestionnaire();
 
-  useEffect(() => {
+    useEffect(() => {
     checkExistingSession();
   }, []);
 
@@ -160,6 +160,26 @@ function App() {
     );
   }
 
+  // NEW: Add the redo questionnaire function
+  const handleRedoQuestionnaire = async () => {
+    try {
+      await resetQuestionnaire();
+      // Navigate back to questionnaire
+      setCurrentView('questionnaire');
+    } catch (err) {
+      console.error('Failed to reset questionnaire:', err);
+      alert('Failed to reset questionnaire. Please try again.');
+    }
+  };
+
+  if (isLoading || questionnaireLoading) {
+    return (
+      <div className="min-h-screen bg-gray-100 flex items-center justify-center">
+        <div className="text-xl">Loading...</div>
+      </div>
+    );
+  }
+
   return (
     <div className="min-h-screen bg-gray-100">
       {currentView === 'login' && (
@@ -195,6 +215,8 @@ function App() {
           userAnswers={response.answers || {}}
           onLogout={handleLogout}
           onGoToQuestion={goToQuestion}
+          onRedoQuestionnaire={handleRedoQuestionnaire} // NEW: Pass the function
+          isResetting={questionnaireLoading} // NEW: Pass loading state
         />
       )}
     </div>
