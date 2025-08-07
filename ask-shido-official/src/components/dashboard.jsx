@@ -62,7 +62,7 @@ const Dashboard = ({
       </div>
 
       <div className="dashboard-stats">
-        <h2>Survey Progress</h2>
+        <h2>AskShido Progress</h2>
         <div className="dashboard-progress-bar">
           <div
             className="dashboard-progress-fill"
